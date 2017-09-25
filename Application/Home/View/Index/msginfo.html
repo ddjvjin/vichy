@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>薇姿</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport"/>
+	<link href="__PUBLIC__/0914/css/comm.css?y=00" rel="stylesheet"></head>
+	<script src="__PUBLIC__/0914/js/app.js"></script>
+<body>
+	<section class="main main1" >
+		<img src="__PUBLIC__/0914/images/v1.png" class="doc doc1" alt="">
+    	<img src="__PUBLIC__/0914/images/v2.png" class="doc doc2" alt="">
+    	<img src="__PUBLIC__/0914/images/v3.png" class="doc doc3" alt="">
+    	<img src="__PUBLIC__/0914/images/v4.png" class="doc doc4" alt="">
+    	<img src="__PUBLIC__/0914/images/v5.png" class="doc doc5" alt="">
+    	<img src="__PUBLIC__/0914/images/v6.png" class="doc doc6" alt="">
+    	<img src="__PUBLIC__/0914/images/v7.png" class="doc doc7" alt="">
+    	<img src="__PUBLIC__/0914/images/v8.png" class="doc doc8" alt="">
+		<img src="__PUBLIC__/0914/images/logo.png" class="logo" alt="">
+		<img src="__PUBLIC__/0914/images/s.png" class="pins" alt="">
+		<div class="box">
+			<img src="__PUBLIC__/0914/images/t.png" alt="">
+			<input type="text" id="message" name="message" placeholder="请输入...(字数不多于15字)" maxlength="15">
+			<button class="btn">发布弹幕</button>
+		</div>
+	</section>
+
+</body>
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script>
+$(function(){
+	var flag=0;
+	$(".btn").click(function(){
+		if(flag==1){return}
+		flag=1;	
+		var message=$("#message").val();
+		if(trimAll(message)==''){
+			alert("请输入提交的内容");
+			return false;
+		}
+		$.post("{:U('Index/msginfo')}",{
+			message:message
+		},function(data){
+			flag=0;
+			$("#message").val('')
+			if(data.status==1){
+				alert("发布成功");
+			}else{
+				alert(data.msg);
+			}
+		},"json");
+
+	})
+})
+
+function trimAll(str) {
+    return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+</script>
+</html>

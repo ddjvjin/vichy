@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>薇姿</title>
+	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport"/>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<script src="__PUBLIC__/js/app.js"></script>
+	<link href="__PUBLIC__/css/comms.css" rel="stylesheet">
+	<link href="__PUBLIC__/css/swiper.css" rel="stylesheet">
+</head>
+<style>
+html,body,.swiper-container,.swiper-slide,.wrap{height: 100%;overflow: hidden;}
+.noTouch{width: 100%;height: 100%; position: absolute; left: 0;top: 0px;z-index: 20; }
+canvas{ position: absolute; left: -99999px; opacity: 0;visibility: hidden; }
+.ico{ position: absolute; right: 10px;top: 12px; width: 22px; z-index: 90}
+.gifimg{ position: absolute; width: 82%;left: 9%;bottom: .55rem }
+
+.myloading{width: 100%;height: 100%; position: fixed; left: 0px; top: 0px; z-index: 9000;display: none;}
+.myloading .bg{width: 100%;height: 100%; position: fixed;left: 0px; top: 0px;}
+.myloading .d{width: 25px;height: 25px; background: #01184A;border-radius: 50%;position: absolute; left: 50%; top: 50%; margin-top: -15px; margin-left: -15px;
+    -moz-animation: load 1.5s linear  infinite ;
+    -webkit-animation: load 1.5s linear  infinite ;
+}
+.myloading p{ text-align: center; font-size: 13px; position: relative; top: 50%;margin-top: 25px;color: #fff;}
+@-moz-keyframes load
+{
+    0% {transform:scale(0.5);-webkit-transform:scale(0.5); opacity: 1}
+    100% {transform:scale(1.5); -webkit-transform:scale(1.5);opacity: 0}
+}
+@-webkit-keyframes load
+{
+    0% {transform:scale(0.5);-webkit-transform:scale(0.5); opacity: 1}
+    100% {transform:scale(1.5);-webkit-transform:scale(1.5); opacity: 0}
+}
+</style>
+<body>
+<canvas id="canvas"></canvas>
+<section class="wrap">
+	<div class="myloading"><div class="bg show"></div><div class="do"></div><p>&nbsp;</p></div>
+	<div class="swiper-container wrapSwiper">
+        <div class="swiper-wrapper">
+            <!-- <div class="swiper-slide page1 swiper-no-swiping" ontouchmove="return false">
+            	<img src="__PUBLIC__/images/logo.png" class="logo" alt="">
+				<img src="__PUBLIC__/images/per.png" class="person" alt="">
+				<img src="__PUBLIC__/images/page1Img1.png" class="page1Txt" alt="">
+				<img src="__PUBLIC__/images/sb.png" class="noc1" alt="">
+            	<button id="btn1">定制你的专属语音纹身</button>
+            	<span  ontouchend = 'document.body.classList.add("gzShow")'>• 详细规则 •</span>
+            </div> -->
+            <div class="swiper-slide page2 swiper-no-swiping" ontouchmove="return false">
+            	<img src="__PUBLIC__/images/ico.png" ontouchend = 'document.body.classList.add("gzShow")' class="ico" alt="">
+            	<div class="soundBox" id="soundBox">
+            		<img src="__PUBLIC__/images/sou1.png" width="100%" class="soundLine" alt="">
+            		<img src="__PUBLIC__/images/sb.png" class="soundImg" alt="">
+            	</div>
+            	<div class="count_down hide" id="count_down">
+            		<!-- <img src="__PUBLIC__/images/3.png" id="outImg" alt="">
+            		<img src="__PUBLIC__/images/s.png" alt=""> -->
+            	</div>
+            	<img src="__PUBLIC__/images/w.png" class="wbg" alt="">
+            	<img src="__PUBLIC__/images/logo.png" class="logo" alt="">
+            	<img src="__PUBLIC__/images/d1.png" class="doc doc1" alt="">
+            	<img src="__PUBLIC__/images/d2.png" class="doc doc2" alt="">
+            	<img src="__PUBLIC__/images/d3.png" class="doc doc3" alt="">
+            	<img src="__PUBLIC__/images/d4.png" class="doc doc4" alt="">
+            	<img src="__PUBLIC__/images/d5.png" class="doc doc5" alt="">
+            	<img src="__PUBLIC__/images/d6.png" class="doc doc6" alt="">
+            	<img src="__PUBLIC__/images/d7.png" class="doc doc7" alt="">
+            	<img src="__PUBLIC__/images/d8.png" class="doc doc8" alt="">
+				<img src="__PUBLIC__/images/d9.png" class="doc doc9" alt="">
+				<div id="touchBtn"></div>
+				<img src="__PUBLIC__/images/btn.png" class="rec_btn" alt="">
+            </div>
+            <div class="swiper-slide page3" ontouchmove="return false">
+            	<div class="noTouch  swiper-no-swiping"></div>
+            	<img src="__PUBLIC__/images/logo.png" class="logo" alt="">
+            	<div class="changeImgBox">
+	        		<div class="swiper-container changeImg">
+	    				<div class="swiper-wrapper">
+	    					<!-- <div class="swiper-slide">
+	    						<button><img src="__PUBLIC__/images/m1.png" alt=""></button>
+	    					</div> -->
+	    					<div class="swiper-slide">
+	    						<button><img src="__PUBLIC__/images/m2.png" alt=""></button>
+	    					</div>
+	    					<div class="swiper-slide">
+	    						<button><img src="__PUBLIC__/images/m9.png" alt=""></button>
+	    					</div>
+	    					<div class="swiper-slide">
+	    						<button><img src="__PUBLIC__/images/m8.png" alt=""></button>
+	    					</div>
+	    					<div class="swiper-slide">
+	    						<button><img src="__PUBLIC__/images/m7.png" alt=""></button>
+	    					</div>
+	    					<!-- <div class="swiper-slide">
+	    						<button><img src="__PUBLIC__/images/m5.png" alt=""></button>
+	    					</div>
+	    					<div class="swiper-slide">
+	    						<button><img src="__PUBLIC__/images/m6.png" alt=""></button>
+	    					</div>
+	    					<div class="swiper-slide">
+	    						<button><img src="__PUBLIC__/images/m7.png" alt=""></button>
+	    					</div>
+	    					<div class="swiper-slide">
+	    						<button><img src="__PUBLIC__/images/m8.png" alt=""></button>
+	    					</div> -->
+	        			</div>
+	        		</div>
+	        		<span class="limg"  id="limg" ><img src="__PUBLIC__/images/l.png"alt=""></span>
+	    			<span class="rimg" id="rimg" ><img src="__PUBLIC__/images/r.png"alt=""></span>
+        		</div>
+            	<img src="__PUBLIC__/images/w.png" class="wbg" alt="">
+            	<img src="__PUBLIC__/images/t2.png" class="page1Txt" alt="">
+				<button id="btn2">生成纹『声』</button>
+            </div>
+            <div class="swiper-slide page4 swiper-no-swiping" id="page4" ontouchmove="return false">
+	           	<img src="__PUBLIC__/images/logo.png" class="logo" alt="">
+		        <img src="__PUBLIC__/images/w.png" class="wbg" alt="">
+            	<div class="section1">            	
+		            
+		            <div class="box" id="box">
+		            	<img id="check_img" src="__PUBLIC__/images/tm.png" width="100%" alt="">
+		            </div>
+		            <button class="tips">长按图片保存至相册 <span>>晒出纹『声』帖<</span></button>
+		            <div class="btnBox">
+		            	<span>GET马伊俐同款语音纹『声』贴</span>
+		            	<p style="text-align: center;color:#fff;font-size: 11px;">*限量4000套</p>
+			            <a href="javascript:;" ontouchend = 'document.body.classList.add("showBox2")'><img src="__PUBLIC__/images/btn3.png" alt=""></a>
+			            <a href="javascript:;" ontouchend = 'document.body.classList.add("showMap")'><img src="__PUBLIC__/images/btn2.png" alt=""></a>
+		            </div>
+	            </div>
+	            
+	            <div class="box2">
+	            	<img src="__PUBLIC__/images/close.png" class="close" ontouchend = 'document.body.classList.remove("showBox2")' alt="">
+	            	<img src="__PUBLIC__/images/box2.png" width="100%" alt="">
+	            	<div id="copyValue">
+	            		<p>http://t.cn/Rpg6BXc</p><!--http://vichy.mall-->
+	            		<textarea name=" "  readonly="" id="text" style="position: absolute;left:-999px; opacity: 0;">http://t.cn/Rpg6BXc</textarea>
+	            		<!-- <input type="text" value="http://t.cn/Rpg6BXc" readonly="" id="text" style="position: absolute;left:-999px; opacity: 0;"> -->
+	            		<span>点击复制链接</span>
+	            		<em style="display: block;margin-top: 15px;">获得马伊琍同款能量套装</em>
+	            	</div>
+	            </div>
+	            <div class="map">	
+	            	<img src="__PUBLIC__/images/close.png" class="close" ontouchend = 'document.body.classList.remove("showMap")' alt="">
+	            	<div style="position: relative">
+	            		<img src="__PUBLIC__/images/map.png" width="100%" alt="">
+	            		<img src="__PUBLIC__/images/gif.gif" class="gifimg" alt="">
+	            		<img src="__PUBLIC__/images/gif2.gif" class="gifimg2" alt="">
+	            	</div>
+	            	
+	            </div>
+	        </div>
+        </div>
+    </div>
+</section>
+<div class="gz_box" ontouchmove="return false">
+	<div class="gz_box_con">
+		<img src="__PUBLIC__/images/close.png" ontouchend = 'document.body.classList.remove("gzShow")' class="close" alt="">
+		<img src="__PUBLIC__/images/gz.png" width="100%" alt="">
+		<div class="inp_box2 check" id="inp_box2" ontouchend="this.classList.toggle('check')">
+			<div></div>我已阅读并同意
+		</div>
+	</div>
+</div>
+
+
+</body>
+<script src="__PUBLIC__/js/swiper.js"></script>
+<script src="__PUBLIC__/js/mDialog.js"></script>
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+	var link="{$shareurl}";
+	var imgUrl = "{$shareList.image}";
+	wx.config({
+		debug: false,
+		appId: '<?php echo $signPackage["appId"];?>',
+		timestamp: <?php echo $signPackage["timestamp"];?>,
+		nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+		signature: '<?php echo $signPackage["signature"];?>',
+		jsApiList: [
+			'onMenuShareAppMessage',
+			'onMenuShareTimeline',
+			'onMenuShareQQ',
+			'onMenuShareWeibo',
+			'translateVoice',
+			'startRecord',
+			'stopRecord',
+			'playVoice',
+			'uploadVoice',
+			'downloadVoice',
+			'onVoiceRecordEnd',
+		]
+	});
+	wx.ready(function () {
+		initialization();
+		<if condition="$info['sounds'] neq 1">
+		wx.startRecord({
+			success: function(){
+				wx.stopRecord();
+			},cancel: function () {
+				alert('您拒绝授权录音,将无法继续操作');
+				return false;
+		  	}
+		}); 
+		</if>
+		wx.onVoiceRecordEnd({
+		    // 录音时间超过一分钟没有停止的时候会执行 complete 回调
+		    complete: function (res) {
+		        $(".myloading").show();
+				wx.uploadVoice({
+					localId: res.localId,
+					success: function (ress) {
+						var media_id=ress.serverId;
+						var nlocalId=res.localId;
+						$.post("{:U('Index/uplaodvoice')}",{
+							wechat_id:"{$info.id}",
+							media_id:media_id,
+							localId:nlocalId,
+							sounds:timeCount
+						},function(data){
+							$(".myloading").hide();
+							if(data.status==1){
+								link=data.url;
+								initialization();
+								swiper.slideNext()
+							}else{
+								alert(data.msg)
+							}
+						},"json");
+					},fail: function (ress) {
+						alert(JSON.stringify(ress));
+					}
+				});
+		    }
+		});
+	});
+	function initialization(){
+		var title = "{$shareList.title}";
+		var desc = "{$shareList.message}";
+		//分享给朋友
+		wx.onMenuShareAppMessage({
+			title: title, // 分享标题
+			desc: desc, // 分享描述今年中秋，送礼就送莫斯利安
+			link: link, // 分享链接
+			imgUrl: imgUrl, // 分享图标
+			type: '', // 分享类型,music、video或link，不填默认为link
+			dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+			success: function () { 
+				//exceed();
+			},
+			cancel: function () { 
+			}
+		});
+		//分享到朋友圈
+		wx.onMenuShareTimeline({
+			title: title, // 分享标题
+			link: link, // 分享链接
+			imgUrl: imgUrl, // 分享图标
+			success: function () {
+				//exceed();
+			},
+			cancel: function () { 
+				// 用户取消分享后执行的回调函数
+			}
+		});
+		//分享到QQ
+		wx.onMenuShareQQ({
+			title: title, // 分享标题
+			desc: desc, // 分享描述
+			link: link, // 分享链接
+			imgUrl: imgUrl, // 分享图标
+			success: function () {
+				//exceed();
+			},
+			cancel: function () { 
+			   // 用户取消分享后执行的回调函数
+			}
+		});
+		//分享到腾讯微博
+		wx.onMenuShareWeibo({
+			title: title, // 分享标题
+			desc: desc, // 分享描述
+			link: link, // 分享链接
+			imgUrl: imgUrl, // 分享图标
+			success: function () { 
+				//exceed();
+			},
+			cancel: function () { 
+				// 用户取消分享后执行的回调函数
+			}
+		});
+	}
+	
+	function exceed(){
+		$.post("{:U('Loreal/pushshare')}",{
+		},function(data){
+		},"json");
+	}
+</script>
+<script>
+var voice= {
+	localId: '',
+	serverId: ''
+};
+var timeCount = 0,timer = null,timer2 = null;
+var swiper = new Swiper('.wrapSwiper', {
+	direction: 'vertical',
+	speed : 800
+});
+window.onload = function(){
+	
+	// btn1.addEventListener('touchend',function(){
+	// 	if(inp_box2.classList.contains('check')){
+	// 		swiper.slideNext()
+	// 	}
+	// });
+	//点击复制
+	copyValue.addEventListener('touchend',function(){
+		text.select();
+		text.setSelectionRange(0, text.value.length);
+		document.execCommand("copy");
+		alerts("复制成功！",{
+			style : 'padding : 20px;text-algin:center; font-size:15px;',
+			button : [
+				{        //按钮，不写不显示，数组格式，每项为json
+			        name : '确定', //按钮的名称
+			        callBack : function(){  //回调函数
+			            //alerts('你点击了确定')
+			        }
+			    }
+			]
+		});
+	})
+	btn2.addEventListener('touchend',function(){
+		$(this).html("正在生成纹『声』...");
+		setQr()
+	});
+	var checkNum = 0,timeout = 3;
+	var swiper2 = new Swiper('.changeImg', {
+		speed : 800,
+		onTransitionEnd: function(swiper2){
+		  checkNum = swiper2.activeIndex;
+		}	
+	});
+	limg.onclick = function () {
+		swiper2.slidePrev()
+	}
+	rimg.onclick = function () {
+		swiper2.slideNext()
+	}
+
+	touchBtn.addEventListener('touchstart',function(e){
+		if(!inp_box2.classList.contains('check')){
+			alert('请选择阅读规则');
+			return
+		}
+		e.preventDefault();
+		timeout = 0;
+		//outImg.src = '__PUBLIC__/images/3.png'
+		count_down.classList.remove('hide')
+		//timer2 = setInterval(function() {
+			if(timeout<=1){
+				clearInterval(timer2)
+				count_down.classList.add('hide')
+				soundBox.classList.add('show');
+				console.log( timeout  )
+				wx.startRecord({
+				  	cancel: function () {
+						alert('您拒绝授权录音,将无法继续操作');
+						return false;
+				  	}
+				}); 
+				countFn()
+			}else{
+				timeout--;
+				outImg.src = '__PUBLIC__/images/'+timeout+'.png'
+			}
+		//},1000)	
+
+		function countFn(){
+			timer = setInterval(function() {
+				/*if(timeCount>10){
+					clearInterval(timer);
+					soundBox.classList.remove('show');
+					timeCount = 0
+					alerts('录音最长10秒');
+					setTimeout(function(){
+						alerts.close()
+					},1000);
+				}else{*/
+					timeCount++;
+				//}
+				console.log( timeCount )
+			},1000)
+		}
+	});
+	touchBtn.addEventListener('touchend',function(){
+		clearInterval(timer2);
+		count_down.classList.add('hide')
+		if(timeout<=1){
+			soundBox.classList.remove('show');
+			clearInterval(timer);
+			if(timeCount == 0) return
+			wx.stopRecord({
+			  	success: function (res) {
+					voice.localId = res.localId;
+					$(".myloading").show();
+					wx.uploadVoice({
+						localId: voice.localId,
+						success: function (ress) {
+							voice.serverId = ress.serverId;
+							var media_id=voice.serverId;
+							var nlocalId=voice.localId;
+							$.post("{:U('Index/uplaodvoice')}",{
+								wechat_id:"{$info.id}",
+								media_id:media_id,
+								localId:nlocalId,
+								sounds:timeCount
+							},function(data){
+								$(".myloading").hide();
+								if(data.status==1){
+									link=data.url;
+									initialization();
+									swiper.slideNext()
+								}else{
+									alert(data.msg)
+								}
+							},"json");
+						},fail: function (ress) {
+							//alert(JSON.stringify(ress));
+						}
+					});
+				},fail: function (res) {
+					//alert(JSON.stringify(res));
+				}
+			});
+
+			//if(timeCount<=10){
+				// alerts('录音最短10秒！',{clickClose : true});
+				// setTimeout(function(){
+				// 	alerts.close()
+				// },1000);
+				// timeCount = 0
+			//}else{
+				//swiper.slideNext()
+			//}
+		}
+	})
+
+	function setQr(){
+		$(".myloading").show();
+		var ctx = canvas.getContext("2d"),
+		w = 874,h = 790
+		canvas.width = w;
+		canvas.height  = h;
+		var img = new Image();
+		img.src="__PUBLIC__/images/box_"+ checkNum +".png"
+		img.onload = function(){
+			ctx.drawImage(img,0,0,w,h);
+			var img2 = new Image();
+			img2.src="{$info.qrcode}"
+			img2.onload = function(){
+				if(checkNum == 0){
+					ctx.drawImage(img2,618,300,130,130);
+				}else if(checkNum == 1){
+					ctx.drawImage(img2,350,334,120,120);
+				}else if(checkNum == 2){
+					ctx.drawImage(img2,630,316,124,124);
+				}else if(checkNum == 3){
+					ctx.drawImage(img2,464,314,95,95);
+				};
+				var base = canvas.toDataURL();
+				$.post("{:U('Index/pushinfo')}",{
+					tattoo:checkNum,
+					base64:base
+				},function(data){
+					$(".myloading").hide();
+					if(data.status==1){
+						imgUrl=data.img;
+						initialization();
+						check_img.src = base
+						swiper.slideNext();
+					}else{
+						alert(data.msg);
+					}
+				},"json");
+			}
+		};
+	}
+}
+
+</script>
+</html>

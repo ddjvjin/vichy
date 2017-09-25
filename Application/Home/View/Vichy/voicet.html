@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>薇姿</title>
+	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport"/>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<script src="__PUBLIC__/js/app.js"></script>
+	<link href="__PUBLIC__/css/comms.css" rel="stylesheet">
+</head>
+<script>
+	document.addEventListener("WeixinJSBridgeReady", function () {
+        audio.play();
+    }, false);
+</script>
+<style>
+html,body,.wrap{height: 100%;overflow: hidden;background: #003061}
+.canIPay{ position: absolute; left: 0px; bottom: 24px;text-align: center; }
+.canIPay img{width: 66%;display: block;margin:11px auto; }
+.canIPay a{ border-bottom: 1px solid #fff; color: #fff;font-size: 16px; }
+.smBox{width: 66%; position: absolute; left: 17%;bottom: 30%}
+.userIMg{ position: absolute; width: 100%; left: 0px; bottom: 1rem;text-align: center; }
+.useri{width: 40px;height: 40px;margin-right: 5px; border-radius: 50%; border: 1px solid #003061}
+.userIMg {font-weight: bold; color: #003061;font-size: 15px;}
+.btn4{display: block; width: 47%;margin:6px auto 0 auto;}
+.audio{ position: absolute; left: -999px; opacity: 0 }
+/*@media screen and (max-width: 320px){
+	.userIMg{ bottom: 16px;}
+}
+@media screen and (max-width: 375px){
+	.userIMg{ bottom: 20px;}
+	.btn4{margin-top: 8px;}
+}*/
+</style>
+<body>
+<section class="wrap">
+	<img src="__PUBLIC__/images/logo.png" class="logo" alt="">
+	<div class="smBox">
+		<img src="__PUBLIC__/images/g2.gif" width="100%" alt="">
+		<div class="userIMg">
+			<img src="__PUBLIC__/images/avatar.jpg" class="useri" alt=""> 马伊琍
+			<!-- <img src="__PUBLIC__/images/btn4.png" id="btn4" class="btn4" alt=""> -->
+		</div>
+	</div>
+	<div class="canIPay">
+		<img src="__PUBLIC__/images/sm.gif" id="audioImg" alt="">
+		<a href="{:U('Index/index')}">我也要玩</a>
+	</div>
+	<audio id="audio" autoplay="autoplay" src="__PUBLIC__/images/mp3_2.wav"></audio>
+</section>
+ 
+
+
+</body>
+<script>
+audio.addEventListener('ended',function(){
+	audioImg.src = '__PUBLIC__/images/smF.png'
+})
+</script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+wx.config({
+		debug: false,
+		appId: '<?php echo $signPackage["appId"];?>',
+		timestamp: <?php echo $signPackage["timestamp"];?>,
+		nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+		signature: '<?php echo $signPackage["signature"];?>',
+		jsApiList: [
+			'onMenuShareAppMessage',
+			'onMenuShareTimeline',
+			'onMenuShareQQ',
+			'onMenuShareWeibo',
+		]
+	});
+	wx.ready(function () {
+		initialization();
+	});
+	function initialization(){
+		var title = "{$shareList.title}";
+		var desc = "{$shareList.message}";
+		var imgUrl = "{$shareList.image}";
+		var link="{$shareurl}";
+		//分享给朋友
+		wx.onMenuShareAppMessage({
+			title: title, // 分享标题
+			desc: desc, // 分享描述今年中秋，送礼就送莫斯利安
+			link: link, // 分享链接
+			imgUrl: imgUrl, // 分享图标
+			type: '', // 分享类型,music、video或link，不填默认为link
+			dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+			success: function () { 
+			},
+			cancel: function () { 
+			}
+		});
+		//分享到朋友圈
+		wx.onMenuShareTimeline({
+			title: title, // 分享标题
+			link: link, // 分享链接
+			imgUrl: imgUrl, // 分享图标
+			success: function () {
+			},
+			cancel: function () { 
+				// 用户取消分享后执行的回调函数
+			}
+		});
+		//分享到QQ
+		wx.onMenuShareQQ({
+			title: title, // 分享标题
+			desc: desc, // 分享描述
+			link: link, // 分享链接
+			imgUrl: imgUrl, // 分享图标
+			success: function () {
+			},
+			cancel: function () { 
+			   // 用户取消分享后执行的回调函数
+			}
+		});
+		//分享到腾讯微博
+		wx.onMenuShareWeibo({
+			title: title, // 分享标题
+			desc: desc, // 分享描述
+			link: link, // 分享链接
+			imgUrl: imgUrl, // 分享图标
+			success: function () { 
+			},
+			cancel: function () { 
+				// 用户取消分享后执行的回调函数
+			}
+		});
+	}
+</script>
+</html>
